@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+  android:fillAfter="true"  >
+
+    <scale
+        android:fromXScale="0.1"
+        android:fromYScale="0.1"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="1.5"
+        android:toYScale="1.5"
+        android:startOffset="1000"
+        android:duration="3000"
+        android:interpolator="@android:anim/accelerate_interpolator"/>
+
+    <!-->android:duration – Duration of the animation in which the animation should complete
+
+android:startOffset – It is the waiting time before an animation starts. This property is mainly used to perform multiple animations in a sequential manner
+
+android:interpolator – It is the rate of change in animation
+
+android:fillAfter – This defines whether to apply the animation transformation after the animation completes or not. If it sets to false the element changes to its previous state after the animation. This attribute should be use with <set> node
+
+android:repeatMode – This is useful when you want your animation to be repeat
+
+android:repeatCount – This defines number of repetitions on animation. If you set this value to infinite then animation will repeat infinite times
+
+ android:pivotX="50%" and android:pivotY="50%" indicates the axis of rotation that is center here if
+  android:pivotX="30%" and android:pivotY="40%" indicates 30% horizontally and 40% vertically from top left corner
+ <!-->
+</set>
