@@ -3,7 +3,6 @@ package com.example.mohak.transitions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 
@@ -30,6 +28,8 @@ public class Main2Activity extends AppCompatActivity {
     Animation animation;
     private Animation animation2;
     private Adapter2 adapter2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,8 @@ public class Main2Activity extends AppCompatActivity {
                             ActivityOptionsCompat options = ActivityOptionsCompat.
                                     makeSceneTransitionAnimation(Main2Activity.this, view, "finally");
                             startActivity(new Intent(Main2Activity.this, Main4Activity.class), options.toBundle());
+
+
                         }
 
                         @Override

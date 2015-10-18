@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.ChangeImageTransform;
+import android.transition.ChangeTransform;
 import android.transition.Explode;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                 View view1 = view.findViewById(R.id.imageView);
                 if (Build.VERSION.SDK_INT >= 21) {
-                    getWindow().setSharedElementExitTransition(null);
+                    getWindow().setSharedElementExitTransition(new ChangeTransform().setDuration(1000));
                     getWindow().setExitTransition(null);
                     getWindow().setReenterTransition(new Explode().setDuration(1000));
                     ActivityOptionsCompat a = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view1, "abc");
