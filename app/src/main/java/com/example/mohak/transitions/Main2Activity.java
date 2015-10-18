@@ -3,7 +3,9 @@ package com.example.mohak.transitions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +37,8 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        CoordinatorLayout vi= (CoordinatorLayout) findViewById(R.id.coordinate);
+        Snackbar.make(vi, "Activity 2", Snackbar.LENGTH_INDEFINITE).show();
         imageView = (ImageView) findViewById(R.id.imageView2);
         Animation a2 = AnimationUtils.loadAnimation(this, R.anim.fab2);
         imageView.startAnimation(a2);

@@ -3,6 +3,7 @@ package com.example.mohak.transitions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         Adapter adapter = new Adapter(this, getdata());
         recyclerView.setAdapter(adapter);
+        RelativeLayout vi = (RelativeLayout) findViewById(R.id.rel);
+        Snackbar.make(vi,"Activity 1",Snackbar.LENGTH_INDEFINITE).show();
 
     }
 

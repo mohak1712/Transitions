@@ -3,6 +3,7 @@ package com.example.mohak.transitions;
 import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 public class Main4Activity extends AppCompatActivity {
 
@@ -29,6 +31,8 @@ public class Main4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
         fab = (FloatingActionButton) findViewById(R.id.fab22);
+        RelativeLayout vi = (RelativeLayout) findViewById(R.id.rl);
+        Snackbar.make(vi, "Activity 4", Snackbar.LENGTH_INDEFINITE).show();
     }
 
     @Override
