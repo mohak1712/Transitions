@@ -9,11 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.ChangeImageTransform;
-import android.transition.ChangeTransform;
 import android.transition.Explode;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Adapter adapter = new Adapter(this, getdata());
         recyclerView.setAdapter(adapter);
         RelativeLayout vi = (RelativeLayout) findViewById(R.id.rel);
-        Snackbar.make(vi,"Activity 1",Snackbar.LENGTH_INDEFINITE).show();
+        Snackbar.make(vi, "Activity 1", Snackbar.LENGTH_INDEFINITE).show();
 
     }
 
@@ -58,7 +54,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             final LayoutInflater inflater = LayoutInflater.from(context);
-            View v = inflater.inflate(R.layout.single, parent, false);
+            final View v = inflater.inflate(R.layout.single, parent, false);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ImageView view1 = (ImageView) view.findViewById(R.id.imageView);
+                    if (Build.VERSION.SDK_INT >= 21) {
+                        ActivityOptionsCompat a = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view1, "abc");
+                        startActivity(new Intent(MainActivity.this, Main2Activity.class), a.toBundle());
+
+                    } else {
+                        startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                    }
+                }
+            });
             MyViewHolder holder = new MyViewHolder(v);
             return holder;
 
@@ -79,37 +88,21 @@ public class MainActivity extends AppCompatActivity {
             return Single.size();
         }
 
-        class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        class MyViewHolder extends RecyclerView.ViewHolder{
             ImageView imageView;
             TextView textView;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
-                itemView.setOnClickListener(this);
                 imageView = (ImageView) itemView.findViewById(R.id.imageView);
                 textView = (TextView) itemView.findViewById(R.id.Mytext);
             }
 
-            @Override
-            public void onClick(View view) {
 
-                View view1 = view.findViewById(R.id.imageView);
-                if (Build.VERSION.SDK_INT >= 21) {
-                    getWindow().setSharedElementExitTransition(new ChangeTransform().setDuration(1000));
-                    getWindow().setExitTransition(null);
-                    getWindow().setReenterTransition(new Explode().setDuration(1000));
-                    ActivityOptionsCompat a = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view1, "abc");
-                    startActivity(new Intent(MainActivity.this, Main2Activity.class), a.toBundle());
-                    //getWindow().setSharedElementReturnTransition(transition);
-
-
-                } else {
-                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
-                }
 
             }
         }
-    }
+
 
 //   Activity A's exit transition determines how views in A are animated when A starts B.
 

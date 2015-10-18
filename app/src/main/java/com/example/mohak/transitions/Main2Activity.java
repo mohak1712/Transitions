@@ -41,8 +41,9 @@ public class Main2Activity extends AppCompatActivity {
         Snackbar.make(vi, "Activity 2", Snackbar.LENGTH_INDEFINITE).show();
         imageView = (ImageView) findViewById(R.id.imageView2);
         Animation a2 = AnimationUtils.loadAnimation(this, R.anim.fab2);
-        imageView.startAnimation(a2);
+     //   imageView.startAnimation(a2);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
@@ -97,6 +98,8 @@ public class Main2Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(Main2Activity.this,MainActivity.class));
+        finish();
+
     }
 
     public ArrayList<single> getdata2() {

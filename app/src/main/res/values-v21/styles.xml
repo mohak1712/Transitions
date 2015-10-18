@@ -5,8 +5,9 @@
         <!-- Customize your theme here. -->
 
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowSharedElementEnterTransition">@transition/sharedelement</item>
         <item name="android:windowSharedElementExitTransition">@transition/sharedelement</item>
+
+
     </style>
 
 </resources>

@@ -33,6 +33,7 @@ public class Main4Activity extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.fab22);
         RelativeLayout vi = (RelativeLayout) findViewById(R.id.rl);
         Snackbar.make(vi, "Activity 4", Snackbar.LENGTH_INDEFINITE).show();
+
     }
 
     @Override
@@ -40,6 +41,7 @@ public class Main4Activity extends AppCompatActivity {
         ActivityOptionsCompat options = ActivityOptionsCompat.
                 makeSceneTransitionAnimation(Main4Activity.this, fab, "finally");
         startActivity(new Intent(Main4Activity.this, Main2Activity.class), options.toBundle());
+        finish();
     }
 
     //   Activity A's exit transition determines how views in A are animated when A starts B.
