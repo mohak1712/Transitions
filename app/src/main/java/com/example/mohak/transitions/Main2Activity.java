@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 
 
@@ -32,18 +35,19 @@ public class Main2Activity extends AppCompatActivity {
     private Adapter2 adapter2;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setSharedElementExitTransition(TransitionInflater.from(this).inflateTransition(R.transition.sharedelement));
+            getWindow().setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.sharedelementimg));
+        }
         setContentView(R.layout.activity_main2);
-        CoordinatorLayout vi= (CoordinatorLayout) findViewById(R.id.coordinate);
+        CoordinatorLayout vi = (CoordinatorLayout) findViewById(R.id.coordinate);
         Snackbar.make(vi, "Activity 2", Snackbar.LENGTH_INDEFINITE).show();
         imageView = (ImageView) findViewById(R.id.imageView2);
-        Animation a2 = AnimationUtils.loadAnimation(this, R.anim.fab2);
-     //   imageView.startAnimation(a2);
+        imageView.setImageResource(R.mipmap.ic_launcher);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
@@ -60,10 +64,10 @@ public class Main2Activity extends AppCompatActivity {
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
+                            view.setTransitionName("finally");
                             ActivityOptionsCompat options = ActivityOptionsCompat.
-                                    makeSceneTransitionAnimation(Main2Activity.this, view, "finally");
+                                    makeSceneTransitionAnimation(Main2Activity.this, view, view.getTransitionName());
                             startActivity(new Intent(Main2Activity.this, Main4Activity.class), options.toBundle());
-
 
                         }
 
@@ -75,8 +79,6 @@ public class Main2Activity extends AppCompatActivity {
                 }
             }
         });
-
-
 
 
 //   Activity A's exit transition determines how views in A are animated when A starts B.
@@ -94,13 +96,6 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(Main2Activity.this,MainActivity.class));
-        finish();
-
-    }
 
     public ArrayList<single> getdata2() {
         ArrayList<single> s = new ArrayList<>();

@@ -29,20 +29,30 @@ public class Main4Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT>=21)
+        {
+            getWindow().setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.sharedelement));
+        }
         setContentView(R.layout.activity_main4);
         fab = (FloatingActionButton) findViewById(R.id.fab22);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Main4Activity.this,Main2Activity.class));
+            }
+        });
         RelativeLayout vi = (RelativeLayout) findViewById(R.id.rl);
         Snackbar.make(vi, "Activity 4", Snackbar.LENGTH_INDEFINITE).show();
+
 
     }
 
     @Override
     public void onBackPressed() {
-        ActivityOptionsCompat options = ActivityOptionsCompat.
-                makeSceneTransitionAnimation(Main4Activity.this, fab, "finally");
-        startActivity(new Intent(Main4Activity.this, Main2Activity.class), options.toBundle());
-        finish();
+        super.onBackPressed();
+        startActivity(new Intent(this,MainActivity.class));
     }
+
 
     //   Activity A's exit transition determines how views in A are animated when A starts B.
 

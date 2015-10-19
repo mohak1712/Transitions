@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setSharedElementExitTransition(TransitionInflater.from(this).inflateTransition(R.transition.sharedelement));
+
+        }
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(vi, "Activity 1", Snackbar.LENGTH_INDEFINITE).show();
 
     }
+
+
 
     public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         Context context;
@@ -104,14 +111,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-//   Activity A's exit transition determines how views in A are animated when A starts B.
+/* Activity A's exit transition determines how views in A are animated when A starts B.
 
-//   Activity B's enter transition determines how views in B are animated when A starts B.
+   Activity B's enter transition determines how views in B are animated when A starts B.
 
-//   Activity B's return transition determines how views in B are animated when B returns to A.
+   Activity B's return transition determines how views in B are animated when B returns to A.
 
-//   Activity A's reenter transition determines how views in A are animated when B returns to A.
+   Activity A's reenter transition determines how views in A are animated when B returns to A.
 
+   Dont apply custom transition in shared element tranisition i.e no need to make transitions file in xml
+   use default transitions
+
+*/
 
     public ArrayList<single> getdata() {
         ArrayList<single> s = new ArrayList<>();

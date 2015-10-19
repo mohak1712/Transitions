@@ -39,12 +39,6 @@ public class Main3Activity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(Main3Activity.this,Main2Activity.class));
-        finish();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
